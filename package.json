@@ -1,0 +1,43 @@
+{
+  "name": "eventbus",
+  "version": "0.0.1",
+  "description": "Managing events with JavaScript via an event bus with the publish–subscribe pattern",
+  "main": "lib/eventbus.min.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "uglifyjs ./build/EventBus.js -o ./lib//eventbus.min.js",
+    "babel": "babel ./src/EventBus.js -o ./build/EventBus.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DerHannes85/EventBus.git"
+  },
+  "keywords": [
+    "event",
+    "bus",
+    "on",
+    "once",
+    "off",
+    "trigger",
+    "namespace",
+    "umd",
+    "publish",
+    "subscriber"
+  ],
+  "author": "Johannes Weil, UDG Ludwigsburg GmbH <johannes.weil@udg.de> (www.udg.de)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DerHannes85/EventBus/issues"
+  },
+  "homepage": "https://github.com/DerHannes85/EventBus#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "uglify-js": "^3.4.8"
+  }
+}
