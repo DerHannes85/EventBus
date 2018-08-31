@@ -1,8 +1,8 @@
 {
-  "name": "eventbus",
+  "name": "eventbus-with-namespacing",
   "version": "0.0.1",
   "description": "Managing events with JavaScript via an event bus with the publish–subscribe pattern",
-  "main": "lib/eventbus.min.js",
+  "main": "src/EventBus.js",
   "directories": {
     "test": "test"
   },
@@ -27,7 +27,11 @@
     "publish",
     "subscriber"
   ],
-  "author": "Johannes Weil, UDG Ludwigsburg GmbH <johannes.weil@udg.de> (www.udg.de)",
+  "author": {
+    "name": "Johannes Weil, UDG Ludwigsburg GmbH",
+    "email": "johannes.weil@udg.de",
+    "url": "www.udg.de"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/DerHannes85/EventBus/issues"

@@ -201,7 +201,7 @@ var EventBus = function () {
 
                         if (this.registeredEventNames[key] === evtNameParts[0]) {
                             evtNameIsValid = true;
-                            evtKey = key;
+                            evtKey = this.registeredEventNames[key];
                             break;
                         }
                     }

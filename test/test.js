@@ -16,11 +16,11 @@ describe('adding events', () => {
 
     var eventBus = [];
 
-    var eventName = {
-        'MY_EVENT_NAME': 'MyEventName'
+    var eventNames = {
+        'MY_EVENT_NAME': 'myeventname'
     };
     var eventNamespace = 'ns1.ns2.ns3';
-    var fullEventName = eventName['MY_EVENT_NAME'] + '.' + eventNamespace;
+    var fullEventName = eventNames['MY_EVENT_NAME'] + '.' + eventNamespace;
     var fullEventNameParts = fullEventName.split('.');
 
 
@@ -30,37 +30,38 @@ describe('adding events', () => {
 
     // 3.0 ASSERT
     it('subscriptions should be an array', () => {
-        assert.isArray(eventBus[0].subscriptions[eventName['MY_EVENT_NAME']]);
+        assert.isArray(eventBus[0].subscriptions[eventNames['MY_EVENT_NAME']]);
     });
 
     it('subscriptions should be length of 1', () => {
-        assert.lengthOf(eventBus[0].subscriptions[eventName['MY_EVENT_NAME']], 1);
+        assert.lengthOf(eventBus[0].subscriptions[eventNames['MY_EVENT_NAME']], 1);
     });
 
     it('the one subscription should have full namespace', () => {
-        assert.equal(eventBus[0].subscriptions[eventName['MY_EVENT_NAME']][0].name, fullEventName);
+        assert.equal(eventBus[0].subscriptions[eventNames['MY_EVENT_NAME']][0].name, fullEventName);
     });
 
     it('the only subscription should have full namespace parts', () => {
-        assert.deepEqual(eventBus[0].subscriptions[eventName['MY_EVENT_NAME']][0].parts, fullEventNameParts);
+        assert.deepEqual(eventBus[0].subscriptions[eventNames['MY_EVENT_NAME']][0].parts, fullEventNameParts);
     });
 
     it('the only subscription should have callback1', () => {
-        assert.equal(eventBus[0].subscriptions[eventName['MY_EVENT_NAME']][0].callback, callback1);
+        assert.equal(eventBus[0].subscriptions[eventNames['MY_EVENT_NAME']][0].callback, callback1);
     });
 
-    /*
-    
     // 2.1 ACT
-    eventBus.push(new EventBus());
+    eventBus.push(new EventBus({REGISTERED_EVENT_NAMES_ONLY: true}, eventNames));
     eventBus[1].on(fullEventName, callback1);
+    eventBus[1].on("notavalideventname", callback2);
 
     // 3.1 ASSERT
-    it('subscriptions should be an array', () => {
-        assert.isArray(eventBus[1].subscriptions[eventName['MY_EVENT_NAME']]);
+    it('REGISTERED_EVENT_NAMES_ONLY // subscriptions should be an array', () => {
+        assert.isArray(eventBus[1].subscriptions[eventNames['MY_EVENT_NAME']]);
     });
 
-    */
+    it('REGISTERED_EVENT_NAMES_ONLY // subscriptions should be length of 1 (NOT 2)', () => {
+        assert.lengthOf(eventBus[1].subscriptions[eventNames['MY_EVENT_NAME']], 1);
+    });
 
 });
 
