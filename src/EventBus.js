@@ -147,7 +147,8 @@ export default class EventBus {
 
     trigger(evtName, data = {}) {
 
-        let evtNameParts = this._parseEventName(evtName);
+        let evtNameParts = this._parseEventName(evtName),
+            item;
 
         if (evtNameParts !== false) {
 
@@ -155,15 +156,18 @@ export default class EventBus {
 
                 for (let i = this.subscriptions[evtNameParts.key].length - 1; i >= 0; i--) {
 
-                    // call the callback
-                    this._log("An event was triggered and a callback was found.", evtNameParts.key, this.subscriptions[evtNameParts.key][i]);
-                    this.subscriptions[evtNameParts.key][i].callback(evtNameParts.parts[0], data);
+                    // store the callback
+                    item = this.subscriptions[evtNameParts.key][i];
 
                     // Handle once subscriptions
-                    if (this.subscriptions[evtNameParts.key][i].once === true) {
+                    if (item.once === true) {
                         this._log("An event was triggered and subscription was deleted because of once.");
                         this.subscriptions[evtNameParts.key].splice(i, 1);
                     }
+
+                    // call the callback
+                    this._log("An event was triggered and a callback was found.", evtNameParts.key, item);
+                    item.callback(evtNameParts.parts[0], data);
                 }
 
             }
