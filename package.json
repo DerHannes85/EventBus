@@ -1,6 +1,6 @@
 {
   "name": "eventbus-with-namespacing",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Managing events with JavaScript via an event bus with the publish–subscribe pattern",
   "main": "build/eventbus.js",
   "directories": {
